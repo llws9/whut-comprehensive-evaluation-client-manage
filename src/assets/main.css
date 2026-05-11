@@ -1,0 +1,669 @@
+/* 武汉理工大学主题色配置 */
+:root {
+  --whut-primary: #00468C;
+  /* 主色调-深蓝色 */
+  --whut-primary-light: #005FB8;
+  /* 主色调-亮蓝色 */
+  --whut-primary-dark: #003A73;
+  /* 主色调-暗蓝色 */
+  --whut-secondary: #0099FF;
+  /* 次要色调-蓝色 */
+  --whut-accent: #F6C95E;
+  /* 强调色-金色 */
+  --whut-text-primary: #303133;
+  /* 主要文字颜色 */
+  --whut-text-regular: #606266;
+  /* 常规文字颜色 */
+  --whut-text-secondary: #909399;
+  /* 次要文字颜色 */
+  --whut-border: #DCDFE6;
+  /* 边框颜色 */
+  --whut-bg: #F5F7FA;
+  /* 背景色 */
+  --whut-success: #67C23A;
+  /* 成功色 */
+  --whut-warning: #E6A23C;
+  /* 警告色 */
+  --whut-danger: #F56C6C;
+  /* 危险色 */
+  --whut-info: #909399;
+  /* 信息色 */
+}
+
+/* 重置样式 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-size: 14px;
+  color: var(--whut-text-primary);
+  background-color: var(--whut-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 清除列表样式 */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 链接样式 */
+a {
+  text-decoration: none;
+  color: var(--whut-primary);
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: var(--whut-primary-light);
+}
+
+/* 主容器 */
+#app {
+  height: 100%;
+}
+
+/* 清除浮动 */
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--whut-primary-light);
+}
+
+/* 表格样式增强 */
+.el-table th {
+  background-color: rgba(0, 70, 140, 0.05) !important;
+  color: var(--whut-primary) !important;
+  font-weight: bold !important;
+}
+
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+  background-color: rgba(0, 70, 140, 0.02);
+}
+
+.el-table__row:hover>td {
+  background-color: rgba(0, 70, 140, 0.1) !important;
+}
+
+/* 按钮样式增强 */
+.el-button--primary {
+  background-color: var(--whut-primary) !important;
+  border-color: var(--whut-primary) !important;
+  color: #fff !important;
+}
+
+.el-button--primary:hover,
+.el-button--primary:focus {
+  background-color: var(--whut-primary-light) !important;
+  border-color: var(--whut-primary-light) !important;
+}
+
+.el-button--primary:active {
+  background-color: var(--whut-primary-dark) !important;
+  border-color: var(--whut-primary-dark) !important;
+}
+
+.el-button--success {
+  background-color: var(--whut-success) !important;
+  color: #fff !important;
+}
+
+.el-button--danger {
+  background-color: var(--whut-danger) !important;
+  color: #fff !important;
+}
+
+.el-button--warning {
+  background-color: var(--whut-warning) !important;
+  color: #fff !important;
+}
+
+.el-button--info {
+  background-color: var(--whut-info) !important;
+  color: #fff !important;
+}
+
+/* 确保按钮链接文字颜色正确 */
+.el-button--text {
+  color: var(--whut-primary) !important;
+}
+
+.el-button--primary.is-link,
+.el-button--primary.is-text,
+.el-button--primary.el-button--text {
+  color: var(--whut-primary) !important;
+}
+
+.el-button--success.is-link,
+.el-button--success.is-text,
+.el-button--success.el-button--text {
+  color: var(--whut-success) !important;
+}
+
+.el-button--danger.is-link,
+.el-button--danger.is-text,
+.el-button--danger.el-button--text {
+  color: var(--whut-danger) !important;
+}
+
+/* 表单样式增强 */
+.el-form-item__label {
+  font-weight: 500;
+  color: var(--whut-text-primary);
+}
+
+.el-input__inner:focus,
+.el-textarea__inner:focus {
+  border-color: var(--whut-primary) !important;
+}
+
+/* 卡片样式增强 */
+.el-card {
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 70, 140, 0.1) !important;
+  transition: transform 0.3s, box-shadow 0.3s;
+  border: none !important;
+}
+
+.el-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px 0 rgba(0, 70, 140, 0.15) !important;
+}
+
+.el-card__header {
+  padding: 15px 20px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--whut-border);
+  background-color: rgba(0, 70, 140, 0.02);
+}
+
+/* 按钮文字可见性修复 */
+.el-button--primary.is-link,
+.el-button--primary[link] {
+  color: var(--whut-primary) !important;
+  font-weight: 500;
+}
+
+.el-button--success.is-link,
+.el-button--success[link] {
+  color: var(--whut-success) !important;
+  font-weight: 500;
+}
+
+.el-button--danger.is-link,
+.el-button--danger[link] {
+  color: var(--whut-danger) !important;
+  font-weight: 500;
+}
+
+.el-button--warning.is-link,
+.el-button--warning[link] {
+  color: var(--whut-warning) !important;
+  font-weight: 500;
+}
+
+/* 表格操作列按钮文字可见性强化 */
+.el-table .el-button.is-link,
+.el-table .el-button[link],
+.el-table .el-button--text,
+.el-table .el-button--link,
+.el-table .operation-buttons .el-button {
+  background-color: transparent !important;
+}
+
+.el-table .el-button--primary.is-link,
+.el-table .el-button--primary[link],
+.el-table .operation-buttons .el-button--primary {
+  color: #ffffff !important;
+  background-color: var(--whut-primary) !important;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+.el-table .el-button--success.is-link,
+.el-table .el-button--success[link],
+.el-table .operation-buttons .el-button--success {
+  color: var(--whut-success) !important;
+  background-color: transparent !important;
+  font-weight: 500;
+}
+
+.el-table .el-button--danger.is-link,
+.el-table .el-button--danger[link],
+.el-table .operation-buttons .el-button--danger {
+  color: var(--whut-danger) !important;
+  background-color: transparent !important;
+  font-weight: 500;
+}
+
+.el-table .el-button--warning.is-link,
+.el-table .el-button--warning[link],
+.el-table .operation-buttons .el-button--warning {
+  color: var(--whut-warning) !important;
+  background-color: transparent !important;
+  font-weight: 500;
+}
+
+/* 确保表格操作列的链接按钮文字清晰可见 */
+.el-table .el-button.is-link span,
+.el-table .el-button[link] span,
+.el-table .el-button--text span,
+.el-table .el-button--link span,
+.el-table .operation-buttons .el-button span {
+  color: inherit !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* 分页组件样式 */
+.el-pagination {
+  --el-pagination-button-bg-color: var(--whut-primary);
+  --el-pagination-hover-color: var(--whut-primary);
+  margin-top: 30px;
+  margin-bottom: 25px;
+  padding: 15px;
+  background: linear-gradient(to bottom, #ffffff, #f9fafc);
+  border-radius: 8px;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgba(0, 70, 140, 0.1);
+  position: relative;
+  z-index: 5;
+}
+
+.el-pagination::before {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 0;
+  right: 0;
+  height: 15px;
+  background: linear-gradient(to bottom, rgba(245, 247, 250, 0), rgba(255, 255, 255, 0.8));
+  pointer-events: none;
+}
+
+.el-pagination .el-pagination__jump,
+.el-pagination .el-input__inner,
+.el-pagination .el-pagination__total {
+  color: var(--whut-text-regular);
+}
+
+.el-pagination.is-background .btn-next,
+.el-pagination.is-background .btn-prev,
+.el-pagination.is-background .el-pager li {
+  background: linear-gradient(to bottom, #ffffff, #f8f9fb);
+  color: var(--whut-text-regular);
+  border: 1px solid rgba(0, 70, 140, 0.1);
+  margin: 0 2px;
+  transition: all 0.3s ease;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background: linear-gradient(to bottom, var(--whut-primary), var(--whut-primary-dark)) !important;
+  color: #fff !important;
+  border-color: var(--whut-primary);
+  box-shadow: 0 2px 6px rgba(0, 70, 140, 0.3);
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled):hover {
+  color: var(--whut-primary);
+  border-color: var(--whut-primary-light);
+  background: linear-gradient(to bottom, #ffffff, #eef5ff);
+  box-shadow: 0 2px 6px rgba(0, 70, 140, 0.1);
+}
+
+/* 按钮样式优化 */
+.el-button {
+  transition: all 0.3s ease;
+}
+
+.el-button--primary {
+  background-image: linear-gradient(to bottom, var(--whut-primary-light), var(--whut-primary)) !important;
+  box-shadow: 0 2px 6px rgba(0, 70, 140, 0.2);
+}
+
+.el-button--primary:hover {
+  background-image: linear-gradient(to bottom, var(--whut-primary), var(--whut-primary-dark)) !important;
+  box-shadow: 0 4px 8px rgba(0, 70, 140, 0.3);
+  transform: translateY(-1px);
+}
+
+.el-button--primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 70, 140, 0.2) inset;
+}
+
+/* 处理操作按钮 */
+.el-button.is-text.is-link {
+  padding: 6px 10px;
+  transition: all 0.3s;
+  border-radius: 4px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(250, 250, 250, 0.8));
+  border: 1px solid transparent;
+}
+
+.el-button.is-text.is-link:hover {
+  background: linear-gradient(to bottom, rgba(245, 247, 250, 0.9), rgba(240, 242, 245, 0.9));
+  border-color: rgba(0, 70, 140, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 通过和驳回按钮样式优化 */
+.el-button.is-text.is-link.pass-button {
+  color: #67C23A !important;
+  background: linear-gradient(to bottom, rgba(103, 194, 58, 0.05), rgba(103, 194, 58, 0.02));
+  border: 1px solid rgba(103, 194, 58, 0.1);
+}
+
+.el-button.is-text.is-link.pass-button:hover {
+  background: linear-gradient(to bottom, rgba(103, 194, 58, 0.15), rgba(103, 194, 58, 0.05));
+  border-color: rgba(103, 194, 58, 0.2);
+  box-shadow: 0 2px 6px rgba(103, 194, 58, 0.15);
+}
+
+.el-button.is-text.is-link.reject-button {
+  color: #F56C6C !important;
+  background: linear-gradient(to bottom, rgba(245, 108, 108, 0.05), rgba(245, 108, 108, 0.02));
+  border: 1px solid rgba(245, 108, 108, 0.1);
+}
+
+.el-button.is-text.is-link.reject-button:hover {
+  background: linear-gradient(to bottom, rgba(245, 108, 108, 0.15), rgba(245, 108, 108, 0.05));
+  border-color: rgba(245, 108, 108, 0.2);
+  box-shadow: 0 2px 6px rgba(245, 108, 108, 0.15);
+}
+
+/* 圆角边框 */
+.el-card {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: none;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 菜单样式 */
+.el-menu-item.is-active {
+  color: var(--whut-accent) !important;
+  background-color: var(--whut-primary-dark) !important;
+}
+
+.el-menu-item:hover,
+.el-sub-menu__title:hover {
+  background-color: var(--whut-primary-light) !important;
+}
+
+/* Dialog 对话框样式 */
+.el-dialog__header {
+  border-bottom: 1px solid var(--whut-border);
+  padding: 15px 20px;
+}
+
+.el-dialog__title {
+  color: var(--whut-primary);
+  font-weight: bold;
+}
+
+.el-dialog__body {
+  padding: 20px;
+}
+
+.el-dialog__footer {
+  border-top: 1px solid var(--whut-border);
+  padding: 15px 20px;
+}
+
+/* 消息提示样式 */
+.el-message--success {
+  background-color: rgba(103, 194, 58, 0.1) !important;
+  border-color: var(--whut-success) !important;
+}
+
+.el-message--warning {
+  background-color: rgba(230, 162, 60, 0.1) !important;
+  border-color: var(--whut-warning) !important;
+}
+
+.el-message--error {
+  background-color: rgba(245, 108, 108, 0.1) !important;
+  border-color: var(--whut-danger) !important;
+}
+
+.el-message--info {
+  background-color: rgba(144, 147, 153, 0.1) !important;
+  border-color: var(--whut-info) !important;
+}
+
+/* 标签样式 */
+.el-tag--primary.el-tag--light {
+  background-color: rgba(0, 70, 140, 0.1) !important;
+  border-color: rgba(0, 70, 140, 0.2) !important;
+  color: var(--whut-primary) !important;
+}
+
+/* 武汉理工大学特色元素 */
+.whut-slogan {
+  font-family: "STKaiti", "楷体", "KaiTi", serif;
+  color: var(--whut-primary);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.whut-bg-pattern {
+  position: relative;
+}
+
+.whut-bg-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,30 L50,20 L70,30 L70,60 C60,70 40,70 30,60 Z" fill="%2300468C" opacity="0.05"/></svg>');
+  background-size: 200px 200px;
+  opacity: 0.05;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* 添加动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+/* 响应式调整 */
+@media screen and (max-width: 768px) {
+  .el-card {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .el-card__header {
+    padding: 15px 10px;
+  }
+
+  .el-form-item {
+    margin-bottom: 18px;
+  }
+
+  /* 移动设备上的导航栏圆角调整 */
+  .aside {
+    border-bottom-left-radius: 0;
+  }
+
+  .whut-building {
+    display: none;
+  }
+
+  /* 移动设备上的渐变效果调整 */
+  .el-main .grade-review::before,
+  .el-main .grade-management::before {
+    left: 0;
+    width: 40px;
+    border-bottom-left-radius: 0;
+  }
+}
+
+/* 表格布局调整 */
+.el-table {
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  margin-bottom: 20px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 添加导航与表格之间的渐变过渡 */
+.el-main .grade-review,
+.el-main .grade-management,
+.el-main .student-management,
+.el-main .permission-management {
+  position: relative;
+  padding-left: 10px;
+}
+
+.el-main .grade-review::before,
+.el-main .grade-management::before,
+.el-main .student-management::before,
+.el-main .permission-management::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: 0;
+  height: calc(100% + 40px);
+  width: 70px;
+  background: linear-gradient(to right, rgba(0, 58, 115, 0.15), transparent);
+  pointer-events: none;
+  z-index: 0;
+  border-bottom-left-radius: 20px;
+}
+
+.el-table:hover {
+  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.el-table__header-wrapper {
+  background: linear-gradient(to bottom, #f9fafc, #f4f6fa);
+}
+
+.el-table th {
+  background: linear-gradient(to bottom, #f9fafc, #f4f6fa) !important;
+  color: var(--whut-primary) !important;
+  font-weight: bold !important;
+  border-bottom: 2px solid rgba(0, 70, 140, 0.15);
+  padding: 14px 0;
+}
+
+.el-table td {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 70, 140, 0.05);
+}
+
+.el-table--striped .el-table__body tr.el-table__row--striped td {
+  background-color: rgba(0, 70, 140, 0.02);
+  background-image: linear-gradient(to right, rgba(0, 70, 140, 0.03), rgba(0, 70, 140, 0.01));
+}
+
+.el-table__row:hover>td {
+  background: linear-gradient(to right, rgba(0, 70, 140, 0.08), rgba(0, 70, 140, 0.04)) !important;
+}
+
+.el-table__body-wrapper {
+  overflow-y: auto;
+}
+
+/* 设置表格最大高度，防止内容过多时挤压分页区域 */
+.el-table__body-wrapper {
+  max-height: calc(100vh - 250px);
+}
+
+/* 表格内的按钮容器，防止操作按钮换行 */
+.el-table .operation-buttons {
+  white-space: nowrap;
+  display: flex;
+  gap: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to right, rgba(247, 248, 250, 0.6), rgba(247, 248, 250, 0));
+  padding: 4px 8px;
+}
+
+/* 表格卡片样式增强 */
+.table-card.el-card {
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.08);
+}
+
+.table-card.el-card:hover {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* 确保成绩管理和成绩审核页面的表格卡片一致 */
+.el-main .grade-management .table-card,
+.el-main .grade-review .table-card,
+.el-main .student-management .table-card,
+.el-main .permission-management .table-card {
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.el-main .grade-management .table-card .el-card__body,
+.el-main .grade-review .table-card .el-card__body,
+.el-main .student-management .table-card .el-card__body,
+.el-main .permission-management .table-card .el-card__body {
+  padding: 20px;
+}
+
+.el-table {
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  margin-bottom: 20px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
