@@ -1,0 +1,27 @@
+{
+  "name": "whut-comprehensive-evaluation-client-manage",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "autoprefixer": "^10.5.0",
+    "lucide-vue-next": "^1.0.0",
+    "postcss": "^8.5.14",
+    "tailwindcss": "^3.4.19",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@types/node": "^25.8.0",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "@vue/tsconfig": "^0.7.0",
+    "typescript": "~5.8.3",
+    "vite": "^6.3.5",
+    "vue-tsc": "^2.2.8"
+  }
+}
