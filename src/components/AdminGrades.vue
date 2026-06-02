@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { 
   LayoutDashboard, Users, BookOpen, FileCheck, Shield, Settings, Bell, LogOut,
   ChevronRight, User, BarChart3, Download, Upload, Search, Filter, RefreshCw,
   Edit2, Trash2, Eye, ShieldCheck, Calendar, FileText, BookOpenCheck
 } from 'lucide-vue-next';
+import { buildAcademicYearGradeOptions } from '../utils/academicYearGrades';
 
 const activeMenu = ref('grades');
 const selectedYear = ref('2024-2025');
@@ -20,12 +21,7 @@ const years = [
   { value: '2022-2023', label: '2022-2023学年' }
 ];
 
-const gradeOptions = [
-  { value: '', label: '全部年级' },
-  { value: '研一', label: '研一' },
-  { value: '研二', label: '研二' },
-  { value: '研三', label: '研三' }
-];
+const gradeOptions = computed(() => buildAcademicYearGradeOptions(selectedYear.value));
 
 const statusOptions = [
   { id: 'all', label: '全部' },
@@ -86,6 +82,12 @@ const filteredGrades = computed(() => {
 const handleYearChange = () => {
   console.log('Year changed:', selectedYear.value);
 };
+
+watch(selectedYear, () => {
+  if (!gradeOptions.value.some((grade) => grade.value === selectedGrade.value)) {
+    selectedGrade.value = '';
+  }
+});
 
 const handleGetTemplate = () => {
   console.log('Get template clicked');
