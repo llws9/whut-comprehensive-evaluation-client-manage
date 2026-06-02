@@ -811,38 +811,6 @@ const previewAttachment = (file) => {
   previewDialogVisible.value = true;
 };
 
-// 修改onMounted钩子
-onMounted(async () => {
-  try {
-    // 获取年级数据
-    const gradeResponse = await request.get('/admin/getGrade');
-    if (gradeResponse.data.code === 200) {
-      const rawData = gradeResponse.data.data;
-      if (Array.isArray(rawData)) {
-        // 去重处理
-        gradeOptions.value = Array.from(new Set(rawData))
-          .map(grade => ({ label: grade, value: grade }));
-        
-        await nextTick();
-        
-        // 初始化筛选条件
-        const newFilters = [
-          gradeOptions.value[0]?.value || '',
-          filterGroups.value[1].defaultValue
-        ];
-        
-        if (newFilters[0]) {
-          selectedFilters.value = newFilters;
-          fetchData();
-        }
-      }
-    }
-  } catch (error) {
-    console.error('获取年级数据失败:', error);
-    ElMessage.error('年级数据加载失败');
-  }
-});
-
 // 处理搜索
 const handleSearch = (value) => {
   keyword.value = value;
@@ -859,6 +827,47 @@ const handleFilterChange = (filters) => {
 
 //学年选择
 const selectedYear = ref('')
+
+const loadGradeOptionsByAcademicYear = async () => {
+  try {
+    const gradeResponse = await request.get('/admin/getGrade', {
+      params: {
+        academicYear: selectedYear.value
+      }
+    });
+
+    if (gradeResponse.data.code !== 200) {
+      gradeOptions.value = [];
+      ElMessage.error(`获取年级数据失败: ${gradeResponse.data.msg}`);
+      return false;
+    }
+
+    const rawData = gradeResponse.data.data;
+    if (!Array.isArray(rawData) || rawData.length === 0) {
+      gradeOptions.value = [];
+      ElMessage.warning('年级数据初始化失败');
+      return false;
+    }
+
+    gradeOptions.value = Array.from(new Set(rawData))
+      .map(grade => ({ label: grade, value: grade }));
+
+    await nextTick();
+
+    selectedFilters.value = [
+      gradeOptions.value[0]?.value || '',
+      selectedFilters.value[1] || filterGroups.value[1].defaultValue
+    ];
+
+    return Boolean(selectedFilters.value[0]);
+  } catch (error) {
+    gradeOptions.value = [];
+    console.error('获取年级数据失败:', error);
+    ElMessage.error('年级数据加载失败');
+    return false;
+  }
+};
+
 // 获取数据方法
 const fetchData = async () => {
   loading.value = true;
@@ -940,17 +949,27 @@ const handleSortChange = (column) => {
 };
 
 // 新增学年变化处理
-const handleYearChange = () => {
+const handleYearChange = async () => {
   currentPage.value = 1;
-  fetchData();
+  const hasGrade = await loadGradeOptionsByAcademicYear();
+  if (hasGrade) {
+    fetchData();
+  } else {
+    tableData.value = [];
+    total.value = 0;
+  }
 };
 
 //使用onMounted在组件挂载的时候调用获取,默认显示当前年份
-onMounted(() => {
+onMounted(async () => {
   if (years && years.length > 1) {
     selectedYear.value = years[1].value;
+  }
+
+  const hasGrade = await loadGradeOptionsByAcademicYear();
+  if (hasGrade) {
     fetchData();
-  } 
+  }
 });
 // 分页处理
 const handlePageChange = (page) => {

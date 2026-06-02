@@ -516,49 +516,6 @@ const gradeOptions = ref([]);
 // // 当前选中的筛选条件（初始值调整为动态空值，避免固定值干扰）
 const selectedFilters = ref(['', '待审核', '智育']); // 初始年级设为空，等待动态数据填充
 
-onMounted(async () => {
-  try {
-    const gradeResponse = await request.get('/admin/getGrade');
-    if (gradeResponse.data.code === 200) {
-      const rawData = gradeResponse.data.data;
-      if (Array.isArray(rawData) && rawData.length > 0) {
-        // 修复2：优化去重逻辑
-        gradeOptions.value = Array.from(new Set(rawData)).map(grade => ({ 
-          label: grade, 
-          value: grade 
-        }));
-        
-        // 等待响应式更新
-        await nextTick();
-        
-        // 修复3：直接使用gradeOptions的第一个值
-        const newFilters = [
-          gradeOptions.value[0]?.value, // 安全访问
-          filterGroups.value[1].defaultValue,
-          filterGroups.value[2].defaultValue
-        ];
-        
-        // 新增空值校验
-        if (newFilters[0]) {
-          selectedFilters.value = newFilters;
-          fetchData();
-        } else {
-          ElMessage.warning('年级数据初始化失败');
-        }
-      }
-      fetchApplicationStatus();
-    } else {
-      gradeOptions.value = [];
-      ElMessage.error(`获取年级数据失败: ${gradeResponse.data.msg}`);
-    }
-  } catch (error) {
-    gradeOptions.value = [];
-    console.error('获取年级数据失败:', error);
-    ElMessage.error('获取年级数据失败，请稍后重试');
-  }
-});
-
-
 // 修改：使用computed动态生成filterGroups，确保与gradeOptions实时同步
 const filterGroups = computed(() => [
   {
@@ -590,6 +547,49 @@ const filterGroups = computed(() => [
   }
 ]);
 
+
+const loadGradeOptionsByAcademicYear = async () => {
+  try {
+    const gradeResponse = await request.get('/admin/getGrade', {
+      params: {
+        academicYear: selectedYear.value
+      }
+    });
+
+    if (gradeResponse.data.code !== 200) {
+      gradeOptions.value = [];
+      ElMessage.error(`获取年级数据失败: ${gradeResponse.data.msg}`);
+      return false;
+    }
+
+    const rawData = gradeResponse.data.data;
+    if (!Array.isArray(rawData) || rawData.length === 0) {
+      gradeOptions.value = [];
+      ElMessage.warning('年级数据初始化失败');
+      return false;
+    }
+
+    gradeOptions.value = Array.from(new Set(rawData)).map(grade => ({
+      label: grade,
+      value: grade
+    }));
+
+    await nextTick();
+
+    selectedFilters.value = [
+      gradeOptions.value[0]?.value || '',
+      selectedFilters.value[1] || filterGroups.value[1].defaultValue,
+      selectedFilters.value[2] || filterGroups.value[2].defaultValue
+    ];
+
+    return Boolean(selectedFilters.value[0]);
+  } catch (error) {
+    gradeOptions.value = [];
+    console.error('获取年级数据失败:', error);
+    ElMessage.error('获取年级数据失败，请稍后重试');
+    return false;
+  }
+};
 
 
 const convertStatusToApiValue = (status) => {
@@ -809,17 +809,28 @@ const fetchData = async () => {
 };
 
 // 新增学年选择
-const handleYearChange = () => {
+const handleYearChange = async () => {
   currentPage.value = 1;
-  fetchData();
+  const hasGrade = await loadGradeOptionsByAcademicYear();
+  if (hasGrade) {
+    fetchData();
+  } else {
+    tableData.value = [];
+    total.value = 0;
+  }
 };
 
 //使用onMounted在组件挂载的时候调用获取,默认显示当前年份
-onMounted(() => {
+onMounted(async () => {
   if (years && years.length > 1) {
     selectedYear.value = years[1].value;
+  }
+
+  const hasGrade = await loadGradeOptionsByAcademicYear();
+  await fetchApplicationStatus();
+  if (hasGrade) {
     fetchData();
-  } 
+  }
 });
 
 
